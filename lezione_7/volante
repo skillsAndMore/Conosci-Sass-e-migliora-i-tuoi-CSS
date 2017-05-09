@@ -1,0 +1,48 @@
+//1. Prendiamo una Immagine
+// Includo Compass 
+@import "compass";
+
+div{
+    background: image-url('test.png') no-repeat; 
+    height: 200px;
+    margin: 100px auto;
+    width: 200px;
+}
+
+//2. Genero una Sprite
+// Includo Compass 
+@import "compass";
+//Genero la Sprite
+@import "icon/*.png";
+//Uso Compass per generare le classi CSS da usere in HTML
+@include all-icon-sprites;
+
+div{
+	width: 48px;
+	height: 48px;
+}
+
+//3. Aggiunta classi
+<div class="icon-ita" id="uno"></div>
+<div class="icon-ita2" id="due"></div>
+
+//3. Uso degli Helper Mixin
+#uno{
+    @include icon-sprite('ita');
+}
+
+#due{
+    @include icon-sprite('ita2');
+}
+
+//4. Genero Effetti Hover (ricorda modifica nome)
+// Includo Compass 
+@import "compass";
+//Genero la Sprite
+@import "icon/*.png";
+
+#uno{
+    @include icon-sprite('ita');
+    width: 48px;
+    height: 48px;
+}
