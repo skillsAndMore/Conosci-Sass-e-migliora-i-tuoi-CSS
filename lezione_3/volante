@@ -1,0 +1,117 @@
+//1. Diversi Selettori CSS
+p{} //Selettore Elemento Paragrafo
+
+#id{} //Selettore con Identificatore
+
+.class{} //Selettore Classe
+
+p:nth-child(even){} //Selettore Pseudo-Classe 
+
+a:hover{} //Selettore Pseudo-Classe
+
+//2. Classici Selettori CSS
+#box{
+	background-color: red;
+}
+
+#box header{
+	background-color: yellow;
+}
+
+#box header h1{
+	color: black;
+}
+
+#box section h1{
+	color: blue;
+}
+
+//3. Nesting in SASS
+#box{
+	background-color: red;
+
+	header{
+		background-color: yellow;
+
+		h1{ color: black; }
+	}
+
+	section h1{ color: blue; }
+}
+
+//4. Selettore & base
+a{
+	color: blue;
+
+	&:hover{ color: red; }
+}
+
+li{
+	color: black;
+	background-color: #999;
+
+	&:nth-child(even){
+		background-color: #aaa;
+	}
+}
+
+//5. Caratteristica &
+.rosso{
+	a{ color: red; }
+
+	#special & a{ color: blue; }
+}
+
+//6. Attento alle Trappole
+body{
+	header{
+		div{
+			p{
+				a{ color: red; }
+			}
+		}
+	}
+}
+
+//7. Come funziona Extend
+.info{
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 15px;
+	margin: 0 auto 10px;
+}
+
+.success{
+	@extend .info;
+	background-color: #96cb98;
+	border-color: green;
+}
+
+.error{
+	@extend .info;
+	background-color: #d89b91;
+	border-color: red;
+}
+
+//8. Funzionamento Placeholder
+%base{
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 15px;
+	margin: 0 auto 10px;	
+}
+
+.info{
+	@extend %base;
+}
+.success{
+	@extend %base;
+	background-color: #96cb98;
+	border-color: green;
+}
+
+.error{
+	@extend %base;
+	background-color: #d89b91;
+	border-color: red;
+}
