@@ -1,0 +1,69 @@
+//1. Impostazioni base
+//Importo Compass 
+@import "compass";
+
+//Variabili Ombra Testo
+$font: Pacifico;
+@import url(http://fonts.googleapis.com/css?family=#{$font});
+
+$bg: #ccc; //Lo sfondo della pagina
+$coloreTesto: rgba( darken( $bg, 25% ), .15 ); //Il colore del testo
+$ombraDefault: rgba( darken($bg, 80%), .3); //Il colore di base dell'ombra
+
+//2. Creazione Mixin per Ombra
+@mixin ombraInterna( 
+	$sfondo, 
+	$coloreOmbra: $ombraDefault, 
+	$bordoChiaro: lighten( $bg, 15% ) 
+){
+        $ombra1: 1px 2px 8px $sfondo;
+        $ombra2: 0 0 0 $coloreOmbra;
+        $ombra3: 2px 2px 0 $bordoChiaro;
+
+        @include text-shadow( $ombra1, $ombra2, $ombra1, $ombra3 );
+}
+
+//3. Creazione Ombra
+body{ background-color: $bg; }
+
+article{ 
+
+        h2{
+                color: $coloreTesto;
+                font-family: $font;
+                font-size: 10em;
+                @include ombraInterna( $bg );
+        }
+}
+
+//4. Crea la tua Prima Trasformazione
+@import "compass";
+
+article{
+        //Ruoto di 35 gradi
+        @include transform( rotate(5deg) );
+}
+
+//5. Ruota Soltanto
+article{
+        //Ruoto di 35 gradi
+        @include rotate(35deg);
+} 
+
+//6. Base Transizione
+nav{
+        ul{ list-style: none; }
+        li{
+                @include inline-block();
+        }
+        a{
+                display: block;
+                &:hover{
+                        background-color: red;
+                        @include transform( scale(2) );
+                }
+        }
+}
+
+//7. Aggiunta Transizione
+@include transition( all .7s ease-in );
