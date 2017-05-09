@@ -1,0 +1,183 @@
+//1. Come si Presenta una Variabile
+$coloreSfondo: #FF0000;
+
+#box{ background-color: $coloreSfondo; }
+
+//2. Utilizzo Reale
+/* Configurazione */
+$testo: "Times New Roman", Times, serif;
+$titolo: Helvetica, Arial, sans-serif;
+
+$colore_testo: #000; 
+$colore_titolo: #FFF;
+
+$sfondo_titolo: #000;
+
+/* Progetto */
+h1{
+        background-color: $sfondo_titolo;
+        color: $colore_titolo;
+        font-family: $titolo;
+}
+
+p{
+        color: $colore_testo;
+        font-family: $testo;
+}
+
+//3. Variabili Default
+$coloreSfondo: #FF0000 !default;
+
+#box{ color: $coloreSfondo; }
+
+//4. Esempio modifica Valore
+$coloreSfondo: #000;
+
+#box{
+        $coloreSfondo: #FF0000;
+        color: $coloreSfondo;
+}
+
+//5. Esempio Classico Default
+$coloreSfondo: #000 !default;
+
+#box{
+        $coloreSfondo: #FF0000;
+        color: $coloreSfondo;
+}
+
+//6. Sostituzione Valore Default
+$coloreSfondo: #FF0000;
+
+#box{
+        $coloreSfondo: #000 !default;
+        color: $coloreSfondo;
+}
+
+//7. Vecchio Codice Alert box
+.info{
+        border: 1px solid #000;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 0 auto 10px;
+}
+
+.success{
+        @extend .info;
+        background-color: #96cb98;
+        border-color: green;
+}
+
+.error{
+        @extend .info;
+        background-color: #d89b91;
+        border-color: red;
+}
+
+//8. Utilizzo Funzioni Interne
+//Variabili
+$coloreSuccess: #96cb98;
+$coloreError: #d89b91;
+
+.info{
+        border: 2px solid;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 0 auto 10px;
+}
+
+.success{
+        @extend .info;
+        background-color: $coloreSuccess;
+        border-color: desaturate( darken( $coloreSuccess, 20%), 25%);
+}
+
+.error{
+        @extend .info;
+        background-color: $coloreError;
+        border-color: desaturate( darken( $coloreError, 20%), 25%);
+}
+
+//9. Creare una Funzione Sintassi
+@function nome_funzione( $parametro1, $parametro2, ...){
+        // operazioni varie
+        @return $valore;
+}
+
+//10. Crea Funzione Border Color
+@function border_color( $color ){
+        @return desaturate( darken( $color, 20%), 25% );
+}
+
+//11. Funzioni e Calcoli Matematici
+// Funzione Calcolo Matematico
+@function add( $value ){
+        $value: $value + 25;
+        @return $value;
+}
+
+//12. Codice con Funzione
+.info{
+        border: 2px solid;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 0 auto 10px;
+}
+
+.success{
+        @extend .info;
+        background-color: $coloreSuccess;
+        border-color: border_color( $coloreSuccess );
+}
+
+.error{
+        @extend .info;
+        background-color: $coloreError;
+        border-color: border_color( $coloreError );
+}
+
+//13. Sintassi Dichiarazione Mixin
+@mixin nome_mixin( $parametro1, $parametro2, ... ){
+        proprieta1: valore1;
+        proprieta2: valore2;
+        proprieta3: valore3;
+        ...
+}
+
+//14. Creazione mixin alert_box()
+@mixin alert_box( $color ){
+        @extend .info;
+        background-color: $color;
+        border-color: border_color( $color );
+}
+
+//15. Modifica Codice
+.info{
+        border: 2px solid;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 0 auto 10px;
+}
+
+.success{
+        @include alert_box( $coloreSuccess );
+}
+
+.error{
+        @include alert_box( $coloreError );
+}
+
+//16. Mixin alert_box() Avanzato
+@mixin alert_box( $color ){
+        @extend .info;
+        background-color: $color;
+        border-color: border_color( $color );
+
+        a{
+                color: darken( $color, 100% );
+                font-weight: bold;
+                text-decoration: none;
+
+                &:hover{ text-decoration: underline; }
+        }
+}
