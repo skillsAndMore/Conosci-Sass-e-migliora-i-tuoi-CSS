@@ -1,0 +1,10 @@
+//1. Importazione CSS
+@import url(base.css);
+
+//2. Importazione SASS
+@import "base.scss";
+@import "481up.scss";
+
+//3. Importazione SASS no compilazione
+@import "base";
+@import "481up";
