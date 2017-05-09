@@ -1,0 +1,31 @@
+//1. Single Box Shadow
+// Includo Compass 
+@import "compass";
+
+//Includo una singola ombra
+#box{
+    @include single-box-shadow;
+}
+
+//2. Definisco tutti i Valori
+#box{
+    @include single-box-shadow( #0f0, 13px, 2px, 14px, inset );
+}
+
+//3. Definisco alcuni Valori
+#box{
+    @include single-box-shadow( #0f0, 13px, 2px );
+}
+
+//4. Specifico una Variabile
+#box{
+    @include single-box-shadow( $inset: inset, $spread: 5px );
+}
+
+//5. Modifico un Valore di Default
+$default-box-shadow-color: #0f0;
+
+//Includo una singola ombra
+#box{
+    @include single-box-shadow( $inset: inset );
+}
