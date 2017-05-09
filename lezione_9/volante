@@ -1,0 +1,40 @@
+//1. Prime Configurazioni
+//Importo Compass
+@import "compass";
+//Importo Susy
+@import "susy";
+
+//2. Primi Esperimenti cn Susy
+article{
+    @include span( 8 of 12 );
+}
+
+aside{
+    @include span( 4 at 9 of 12 );
+}
+
+//3. Imposto il Container
+body{
+    @include container(80%);
+}
+
+//4. Configurazione Progetto
+$susy: (
+    columns: 12,
+    gutters: 1/8,
+    container: 80%,
+);
+
+body{ @include container; }
+article{ @include span(8); }
+aside{ @include span(4 at 9); } 
+
+//5. Special Mixin
+body{ @include container; }
+article{ @include span(8); }
+aside{ @include span(4 at 9); }
+header, footer{ @include full; }
+
+//6. Prima e ultima colonna
+article{ @include span(first 8); }
+aside{ @include span(last 3); }
